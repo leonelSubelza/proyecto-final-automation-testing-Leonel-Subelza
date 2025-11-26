@@ -1,0 +1,7 @@
+username,password,must_work,error_text
+standard_user,secret_sauce,True,""
+locked_out_user,secret_sauce,False,"Epic sadface: Sorry, this user has been locked out."
+problem_user,secret_sauce,True,""
+usuario_malo,password_malo,False,"Epic sadface: Username and password do not match any user in this service"
+"",secret_sauce,False,"Epic sadface: Username is required"
+"standard_user","",False,"Epic sadface: Password is required"
