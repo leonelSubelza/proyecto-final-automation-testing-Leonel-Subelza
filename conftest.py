@@ -2,6 +2,15 @@ import pytest
 from selenium import webdriver
 from utils.saucedemo import login
 from pages.login_page import LoginPage
+import requests
+
+def pytest_html_results_table_header(cells):
+  """Añade una columna 'URL' justo después de 'Test ID'."""
+  cells.insert(2, 'URL')
+
+def pytest_html_results_table_row(report, cells):
+  """Rellena la columna con la URL almacenada en el atributo 'page_url'."""
+  cells.insert(2, getattr(report, 'page_url', '-'))
 
 @pytest.fixture
 def driver():
@@ -28,4 +37,12 @@ def invalid_credentials():
 def valid_credentials():
   return ("locked_out_user","secret_sauce")
 
+# api
+@pytest.fixture
+def url_base_reqres():
+  return "https://reqres.in/api"
+
+@pytest.fixture
+def reqres_api_key():
+  return "reqres_e22ecf95077349eab7badb0c6c68a17e"
 

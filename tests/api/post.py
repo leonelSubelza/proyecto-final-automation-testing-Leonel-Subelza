@@ -1,12 +1,11 @@
 import requests
 
-def test_post_users():
-  url = "https://reqres.in/api/users"
-  header = {"x-api-key": "reqres-free-v1"}
+def test_post_users(url_base_reqres,reqres_api_key):
+  header = {"x-api-key": reqres_api_key}
   
   payload = {"name":"Pepe", "age":50}
   
-  response = requests.post(url,headers=header,json=payload)
+  response = requests.post(f"{url_base_reqres}/users",headers=header,json=payload)
   
   # verificar que el recurso se haya creado
   assert response.status_code == 201, "Respuesta no exitosa"

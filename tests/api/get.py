@@ -1,11 +1,13 @@
 import requests
 
-def test_get_users():
-  url = "https://reqres.in/api/users?page=2"
-  # header = {"x-api-key": "reqres-free-v1"}
-  response = requests.get(url)
+def test_get_users(url_base_reqres,reqres_api_key):
+  url = f"{url_base_reqres}/users?page=2"
+  # url = f"{url_base_reqres}?page=2"
+  header = {"x-api-key": reqres_api_key}
+  response = requests.get(url,headers=header)
   
   # verificar que la respuesta es exitosa
+  print(response.status_code)
   assert response.status_code == 200, "Respuesta no exitosa"
   
   data = response.json()
