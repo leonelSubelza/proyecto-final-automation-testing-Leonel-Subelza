@@ -4,11 +4,15 @@ import pytest
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 from pages.cart_page import CartPage
+from utils.logger import logger
 
 @pytest.mark.parametrize("username, password", [("standard_user","secret_sauce")])
 def test_add_product_to_cart(driver,username,password):
   try:
+    logger.warning("-----Ejecutando test_cart.py-----")
+    logger.info("Realizando login válido...")
     LoginPage(driver).openPage().do_complete_login(username,password)
+    logger.info("Login válido realizado correctamente")
     inventory_page = InventoryPage(driver)
     
     # Espera explícita para garantizar que los productos existen
@@ -25,34 +29,8 @@ def test_add_product_to_cart(driver,username,password):
     inventory_page.go_to_cart()
     cart_page = CartPage(driver)
     assert cart_page.get_cart_items(), "No hay elemento en carrito"
+    logger.info("-----test_cart.py ejecutado correctamente-----")
   except Exception as e:
-    print(f"Error en test_product_interaction: {e}")
+    print(f"Error en test_cart: {e}")
+    logger.error(f"Error durante el test_cart: {e}")
     raise
-  
-"""
-def test_add_product_to_cart(login_in_driver):
-  try:
-    driver = login_in_driver
-    
-    # Espera explícita para garantizar que los productos existen
-    wait = WebDriverWait(driver, 10)
-    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '[data-test="inventory-item"]')))
-    
-    cart_btn = driver.find_element(By.CSS_SELECTOR,'[data-test="shopping-cart-link"]')
-    
-    btn_primer_elem = driver.find_element(By.CSS_SELECTOR, '[data-test="add-to-cart-sauce-labs-backpack"]')
-    btn_primer_elem.click()
-    
-    #esperar a que aparezca el badge de carrito
-    cart_badge = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "shopping_cart_badge")))
-    #confirmar que dice 1
-    assert cart_badge.text == '1'
-    
-    # verificar que hay un elemento en el carrito
-    cart_btn.click()
-    assert driver.find_element(By.CSS_SELECTOR, '[data-test="inventory-item"]'), "No hay elemento en carrito"
-  except Exception as e:
-    print(f"Error en test_product_interaction: {e}")
-    raise
-    
-"""

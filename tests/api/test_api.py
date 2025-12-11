@@ -5,6 +5,7 @@ import time
 
 fake = Faker()
 
+# Realiza una request para guardar una entidad
 @pytest.fixture(scope='module')
 def created_post():
   """Crea un post y devuelve sus datos para otros tests"""

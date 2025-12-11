@@ -1,0 +1,50 @@
+name: CI TalentoTech
+on:
+  push:
+    branches: [main,develop]
+  pull_request:
+    branches: [main,develop]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      PYTHON_VERSION: '3.12'
+      PIP_CACHE: ~/.cache/pip
+
+    steps:
+      #1 chechout
+      - name: Checkout codigo
+        uses: actions/checkout@v4
+        
+      #2 Cache de pip
+      - name: Cache dependencia
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PIP_CACHE }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**requirements.txt') }}
+      
+      #3 Setup de Python
+      - name: Instalar python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          
+      #4 Instalacion de dependencias
+      - name: Instalar dependencia
+        run: pip install -r requirements.txt
+        
+     #5 Ejecutar los test (se generara automáticamente los reportes por el pytest.ini)
+      - name: Runtest
+        run: pytest
+     #6 Subir los artefactos: (reportes + imágenes + logs)
+      - name: Subir HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report
+          path: reports/
+      
+      - name: Subir Suite logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-log
+          path: logs/

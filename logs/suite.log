@@ -1,18 +1,31 @@
-21:37:03 INFO TalentoTech Realizando login válido
-21:37:04 INFO TalentoTech Test de login fallido completado
-21:37:08 INFO TalentoTech Realizando login válido
-21:37:09 INFO TalentoTech Test de login fallido completado
-21:38:03 INFO TalentoTech Realizando login válido
-21:38:04 INFO TalentoTech Realizando Verificación y Navegación de la página
-21:38:04 INFO TalentoTech Test de login exitoso completado
-21:38:07 INFO TalentoTech Realizando login válido
-21:38:09 INFO TalentoTech Test de login fallido completado
-21:38:13 INFO TalentoTech Realizando login válido
-21:38:14 INFO TalentoTech Realizando Verificación y Navegación de la página
-21:38:14 INFO TalentoTech Test de login exitoso completado
-21:38:18 INFO TalentoTech Realizando login válido
-21:38:19 INFO TalentoTech Test de login fallido completado
-21:38:23 INFO TalentoTech Realizando login válido
-21:38:24 INFO TalentoTech Test de login fallido completado
-21:38:28 INFO TalentoTech Realizando login válido
-21:38:29 INFO TalentoTech Test de login fallido completado
+2025-12-11 18:17:19 WARNING TalentoTech: -----Ejecutando test_login.py-----
+2025-12-11 18:17:19 INFO TalentoTech: Realizando login válido...
+2025-12-11 18:17:20 INFO TalentoTech: Login válido realizado correctamente
+2025-12-11 18:17:20 INFO TalentoTech: Realizando Verificación y Navegación de la página
+2025-12-11 18:17:20 INFO TalentoTech: -----test_login.py exitoso completado correctamente-----
+2025-12-11 18:17:25 WARNING TalentoTech: -----Ejecutando test_login.py-----
+2025-12-11 18:17:25 INFO TalentoTech: Realizando login válido...
+2025-12-11 18:17:26 INFO TalentoTech: Login válido realizado correctamente
+2025-12-11 18:17:26 INFO TalentoTech: -----test_login.py fallido completado correctamente-----
+2025-12-11 18:17:32 WARNING TalentoTech: -----Ejecutando test_login.py-----
+2025-12-11 18:17:32 INFO TalentoTech: Realizando login válido...
+2025-12-11 18:17:38 INFO TalentoTech: Login válido realizado correctamente
+2025-12-11 18:17:38 INFO TalentoTech: Realizando Verificación y Navegación de la página
+2025-12-11 18:17:38 INFO TalentoTech: -----test_login.py exitoso completado correctamente-----
+2025-12-11 18:17:44 WARNING TalentoTech: -----Ejecutando test_login.py-----
+2025-12-11 18:17:44 INFO TalentoTech: Realizando login válido...
+2025-12-11 18:17:45 INFO TalentoTech: Login válido realizado correctamente
+2025-12-11 18:17:45 INFO TalentoTech: -----test_login.py fallido completado correctamente-----
+2025-12-11 18:17:51 WARNING TalentoTech: -----Ejecutando test_login.py-----
+2025-12-11 18:17:51 INFO TalentoTech: Realizando login válido...
+2025-12-11 18:17:52 INFO TalentoTech: Login válido realizado correctamente
+2025-12-11 18:17:52 INFO TalentoTech: -----test_login.py fallido completado correctamente-----
+2025-12-11 18:17:57 WARNING TalentoTech: -----Ejecutando test_login.py-----
+2025-12-11 18:17:57 INFO TalentoTech: Realizando login válido...
+2025-12-11 18:17:58 INFO TalentoTech: Login válido realizado correctamente
+2025-12-11 18:17:58 INFO TalentoTech: -----test_login.py fallido completado correctamente-----
+2025-12-11 18:18:04 WARNING TalentoTech: -----Ejecutando test_login.py-----
+2025-12-11 18:18:04 INFO TalentoTech: Realizando login válido...
+2025-12-11 18:18:05 INFO TalentoTech: Login válido realizado correctamente
+2025-12-11 18:18:05 ERROR TalentoTech: Error en test_login: Lanzando error forzado en test_login.py
+2025-12-11 18:18:05 ERROR TalentoTech: Screenshot Pytest guardado: reports\screens\test_login_FAIL_20251211-181805.png

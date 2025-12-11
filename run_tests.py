@@ -4,7 +4,7 @@ import pytest
 tests_files = [
   "tests/test_login.py",
   "tests/test_browsing.py",
-  "tests/test_product_interaction.py",
+  "tests/test_cart.py",
 ]
 
 # argumentos para ejecutar las pruebas: archivos + reporte html

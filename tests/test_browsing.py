@@ -1,10 +1,8 @@
-from selenium import webdriver          #Importamos la librería que permite controlar el navegador
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from pages.login_page import LoginPage
-from pages.inventory_page import Inventory_page
-
+from pages.inventory_page import InventoryPage
+from utils.logger import logger
 import pytest
 
 
@@ -25,10 +23,13 @@ Python instancia los fixture y los valores parametricados implicitamente. En tie
 @pytest.mark.parametrize("username, password", [("standard_user","secret_sauce")])
 def test_browsing(driver,username,password):
   try:
+    logger.warning("-----Ejecutando test_browsing.py-----")
+    logger.info("Realizando login válido...")
     login = LoginPage(driver).openPage().do_complete_login(username,password)
+    logger.info("Login válido realizado correctamente")
     # Espera explícita para garantizar que los productos existen
     # wait = WebDriverWait(driver, 10)
-    inventory_page = Inventory_page(driver)
+    inventory_page = InventoryPage(driver)
     inventory_page.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '[data-test="inventory-item"]')))
     
     # validar titulo
@@ -46,25 +47,8 @@ def test_browsing(driver,username,password):
     assert inventory_page.get_burguer_menu_btn(), "Botón menú no encontrado"
     assert inventory_page.get_filter_btn(), "Filtro no encontrado"
     assert inventory_page.get_shopping_cart_btn(), "Carrito no encontrado"
-    
-    """
-    # validar titulo
-    products_txt = driver.find_element(By.CSS_SELECTOR, '[data-test="title"]')
-    assert "Products" in products_txt.text
-    
-    # Validar presencia de productos 
-    assert driver.find_element(By.CSS_SELECTOR,'[data-test="add-to-cart-sauce-labs-backpack"]'), "Primer producto no encontrado"
-    # Nombre y precio del primero
-    assert driver.find_elements(By.CSS_SELECTOR,'[data-test="inventory-item-name"]')[0].text == 'Sauce Labs Backpack' , "Titulo de Primer producto incorrecto"
-    assert driver.find_elements(By.CSS_SELECTOR,'[data-test="inventory-item-price"]')[0].text == '$29.99' , "Precio de Primer producto incorrecto"
-    
-    # validar presencia de elementos importantes
-    assert driver.find_element(By.ID,'react-burger-menu-btn'), "Botón menú no encontrado"
-    assert driver.find_element(By.CSS_SELECTOR, '[data-test="product-sort-container"]'), "Filtro no encontrado"
-    assert driver.find_element(By.CSS_SELECTOR, '[data-test="shopping-cart-link"]'), "Carrito no encontrado"
-       else:
-      assert "Epic sadface" in driver.page_source
-      """
+    logger.info("-----test_browsing.py ejecutado correctamente-----")
   except Exception as e:
     print(f"Error en test_browsing: {e}")
+    logger.info(f"Error en test_browsing.py: {e}")
     raise
