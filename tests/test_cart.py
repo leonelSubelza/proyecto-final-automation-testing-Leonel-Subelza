@@ -9,10 +9,10 @@ from utils.logger import logger
 @pytest.mark.parametrize("username, password", [("standard_user","secret_sauce")])
 def test_add_product_to_cart(driver,username,password):
   try:
-    logger.warning("-----Ejecutando test_cart.py-----")
-    logger.info("Realizando login válido...")
+    logger.info("-----Ejecutando test_cart.py-----")
+    logger.debug("Realizando login válido...")
     LoginPage(driver).openPage().do_complete_login(username,password)
-    logger.info("Login válido realizado correctamente")
+    logger.debug("Login válido realizado correctamente")
     inventory_page = InventoryPage(driver)
     
     # Espera explícita para garantizar que los productos existen
@@ -32,5 +32,5 @@ def test_add_product_to_cart(driver,username,password):
     logger.info("-----test_cart.py ejecutado correctamente-----")
   except Exception as e:
     print(f"Error en test_cart: {e}")
-    logger.error(f"Error durante el test_cart: {e}")
+    logger.warning(f"Error durante el test_cart: {e}")
     raise

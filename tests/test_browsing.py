@@ -23,10 +23,10 @@ Python instancia los fixture y los valores parametricados implicitamente. En tie
 @pytest.mark.parametrize("username, password", [("standard_user","secret_sauce")])
 def test_browsing(driver,username,password):
   try:
-    logger.warning("-----Ejecutando test_browsing.py-----")
-    logger.info("Realizando login válido...")
+    logger.info("-----Ejecutando test_browsing.py-----")
+    logger.debug("Realizando login válido...")
     login = LoginPage(driver).openPage().do_complete_login(username,password)
-    logger.info("Login válido realizado correctamente")
+    logger.debug("Login válido realizado correctamente")
     # Espera explícita para garantizar que los productos existen
     # wait = WebDriverWait(driver, 10)
     inventory_page = InventoryPage(driver)
@@ -50,5 +50,5 @@ def test_browsing(driver,username,password):
     logger.info("-----test_browsing.py ejecutado correctamente-----")
   except Exception as e:
     print(f"Error en test_browsing: {e}")
-    logger.info(f"Error en test_browsing.py: {e}")
+    logger.warning(f"Error en test_browsing.py: {e}")
     raise

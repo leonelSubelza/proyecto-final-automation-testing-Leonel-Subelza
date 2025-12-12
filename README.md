@@ -1,68 +1,140 @@
-# 🧪 Proyecto de Automatización - SauceDemo Tests
+# 🚀 Proyecto Final – Automatización QA (Talento Tech)
 
-Este proyecto forma parte del curso **Automation Testing** del programa **Talento Tech**.  
-Su objetivo es automatizar pruebas funcionales sobre el sitio [saucedemo.com](https://www.saucedemo.com) utilizando **Selenium** y **Pytest**.
+Este proyecto forma parte de la entrega final del curso **Talento Tech – Automatización QA**, donde se implementa una suite de pruebas automatizadas utilizando **Python, Pytest, Selenium y GitHub Actions**.
+Las pruebas se realizan sobre la página [Saucedemo](https://www.saucedemo.com) y también se incluye una sección dedicada a pruebas API utilizando [ReqRes](https://reqres.in/) como servicio de prueba.
 
 ---
 
 ## 🎯 Propósito del Proyecto
 
-El propósito del proyecto es **validar el correcto funcionamiento de la página web SauceDemo** a través de tres pruebas automatizadas que simulan acciones reales de un usuario:
+El objetivo principal es demostrar la capacidad de:
+   - Diseñar y automatizar casos de prueba UI usando el patrón Page Object Model (POM).
+   - Implementar pruebas parametrizadas con datos externos desde un archivo CSV.
+   - Validar flujos completos como:
+      - Login (válido e inválido)
+      - Navegación por la página inventory.html
+      - Agregar productos al carrito
 
-1. **Test de Login Correcto:**  
-   Verifica que el usuario pueda iniciar sesión correctamente con credenciales válidas.
+   - Gestionar logs y capturas de pantalla automáticas en caso de fallo.
+   - Generar reportes HTML de ejecución.
+   - Automatizar la ejecución completa mediante GitHub Actions.
+   - Realizar pruebas de API (GET, POST, DELETE, PUT/PATCH) contra ReqRes.
 
-2. **Test de Navegación e Inventario:**  
-   Comprueba que, una vez dentro del sitio (`inventory.html`), se muestren todos los elementos esperados:  
-   - El botón de menú lateral  
-   - El filtro de productos  
-   - El título "Products"  
-   - Y la lista de productos visibles en pantalla
-
-3. **Test de Carrito de Compras:**  
-   Agrega un producto al carrito y valida que el producto efectivamente aparezca dentro del carrito.
-
-Además se cuenta con un reporte de todas las pruebas hechas en la carpeta reports/report.html
+Es un proyecto que refleja buenas prácticas de automatización usadas en entornos profesionales.
 
 ---
 
 ## ⚙️ Tecnologías Utilizadas
 
-- **Python 3.10+**
-- **Selenium** (para la automatización del navegador)
-- **Pytest** (para la ejecución y reporte de tests)
-- **ChromeDriver** (para controlar Google Chrome)
+#### Backend de automatización
+- Python 3.12
+- Pytest
+- Selenium WebDriver
+- Requests (para pruebas de API)
+- Python Faker (generación de datos)
+- CSV para parametrización
+
+#### Ejecución y DevOps
+- GitHub Actions (CI)
+- pytest-html (reportes)
+- logging (logs estructurados)
+- WebDriver Manager (manejo automático del driver)
+
+#### Patrón
+- Page Object Model (POM)
+
 ---
+<!--### Notas:
+- reports/ y logs/ no se suben al repo (están en .gitignore).
+- Los reportes y capturas se generan automáticamente en cada ejecución.
 
-## 🚀 Instalación y Configuración
+---
+-->
+## 🧪 Casos de Prueba Automatizados
+#### ✔ Login (parametrizado con CSV)
+- Login exitoso con credenciales válidas
+- Login inválido
+- Campos vacíos
+- Email/username incorrecto
+- Contraseña incorrecta
+- Usuario bloqueado, etc.
 
-### Clonar el repositorio
+#### ✔ Navegación en inventory.html
+- Validación del título
+- Validación de elementos principales
+- Verificación de productos visibles
+- Validación del primer producto: nombre y precio
 
+#### ✔ Carrito
+- Agregar un producto al carrito
+- Validar el badge del carrito
+- Verificar que el producto se vea en el carrito
+
+#### ✔ Pruebas API (ReqRes)
+- GET de usuario
+- POST de creación
+- PUT/PATCH de actualización
+- DELETE de un recurso
+- Validación de códigos de estado y estructura de respuesta
+
+--- 
+## ⚙️ Integración Continua con GitHub Actions
+El archivo ci.yml permite que:
+- En cada push o pull request a main o develop:
+   - Se instalen dependencias
+   - Se ejecuten todos los tests UI + API
+   - Se generen reportes HTML y logs
+   - Se suban como artefactos al pipeline
+
+Esto simula un entorno CI real de automatización como en una empresa.
+
+--- 
+## 📊 Reportes generados
+Gracias al archivo pytest.ini, cada vez que se corra pytest se generá automáticamente:
 ```bash
-git clone https://github.com/leonelSubelza/pre-entrega-automation-testing-Leonel-Subelza.git
-cd pre-entrega-automation-testing-Leonel-Subelza
+reports/report.html
+```
+Este reporte incluye:
+- Lista completa de tests ejecutados
+- Tests pasados y fallados
+- Tiempos de ejecución
+- Logs por test
+
+## 📁 Capturas de pantalla
+Si un test falla:
+- Se guarda una imágen PNG en la carpeta reports/screens con formato:
+```bash
+testname_FAIL_YYYYMMDD-HHMMSS.png
+```
+---
+### 📦 Instalación de dependencias
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/leonelSubelza/proyecto-final-automation-testing-Leonel-Subelza.git
+cd proyecto-final-automation-testing-Leonel-Subelza
 ```
 
-### 🧪 Cómo Ejecutar las Pruebas
-Para ejecutar todas las pruebas abrir una terminal sobre el proyecto y ejecutar
+2. Crear un entorno virtual (opcional pero recomendado):
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+```
 
+3. Instalar dependencias:
+```bash
+pip install -r requirements.txt
+```
+
+Eso instalará Selenium, Pytest, Requests, Faker, pytest-html, WebDriver Manager y demás dependencias necesarias.
+
+## ▶️ ¿Cómo ejecutar las pruebas?
+Ejecutar todas las pruebas:
 ```bash
 py -m pytest -v
 ```
 
-<!--
-### 🧰 Ejemplo de Ejecución
+Ejecutar solo las pruebas de API:
 ```bash
-============================================================================== test session starts ==============================================================================
-platform win32 -- Python 3.13.7, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\TuUsuario\AppData\Local\Programs\Python\Python313\python.exe
-cachedir: .pytest_cache
-metadata: {'Python': '3.13.7', 'Platform': 'Windows-10-10.0.19045-SP0', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'html': '4.1.1', 'metadata': '3.1.1', 'mocplugins: html-4.1.1, metadata-3.1.1, mock-3.15.0
-collected 3 items                                                                                                                                                                 
-
-tests/test_browsing.py::test_browsing PASSED                                                                                                                               [ 33%] 
-tests/test_login.py::test_valid_login PASSED                                                                                                                               [ 66%] 
-tests/test_product_interaction.py::test_add_product_to_cart PASSED                                                                                                         [100%] 
-
-============================================================================== 3 passed in 13.81s ===============================================================================
+pytest -m e2e
 ```
--->

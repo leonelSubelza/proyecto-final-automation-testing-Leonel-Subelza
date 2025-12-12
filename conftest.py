@@ -89,7 +89,7 @@ def pytest_runtest_makereport(item,call):
       try:
         # guardamos la foto
         driver.save_screenshot(str(file_name))
-        logger.error(f"Screenshot Pytest guardado: {file_name}")
+        logger.warning(f"Screenshot Pytest guardado: {file_name}")
         
         if hasattr(report, 'extra'):
           report.extra = getattr(report, 'extra', [])
@@ -98,6 +98,7 @@ def pytest_runtest_makereport(item,call):
             'format': 'image',
             'content': str(file_name)
             })
+          
       except Exception as e:
         logger.error(f"Error al capturar pantalla en Pytest: {e}")
       
