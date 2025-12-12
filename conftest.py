@@ -29,17 +29,17 @@ def pytest_html_results_summary(prefix, summary, postfix):
 
 @pytest.fixture
 def driver():
-  driver = webdriver.Chrome()
+  # driver = webdriver.Chrome()
   options = Options()
-  service = Service()
-  # options.addArguments("--incognito") # para que el navegador inicie en incognito
+  # service = Service()
+  options.add_argument("--incognito") # para que el navegador inicie en incognito
   # configuraciones para github
   options.add_argument("--no-sandbox") 
   options.add_argument("--disable-gpu") 
   options.add_argument("--window-size=1920x1080")
   options.add_argument("--headless=new")
   
-  driver = webdriver.Chrome(service=service, options=options)
+  driver = webdriver.Chrome(options=options)
   yield driver
   driver.quit()
     

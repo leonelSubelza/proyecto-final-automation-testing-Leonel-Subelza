@@ -31,8 +31,8 @@ def test_login(driver,username,password,must_work,error_text):
       assert driver.find_element(By.CLASS_NAME, 'title').text == 'Products', f"Título inesperado: {driver.title}"
       logger.info("-----test_login.py exitoso completado correctamente-----")
     else:
-      if username == '' and password == '':
-        raise Exception("Lanzando error forzado en test_login.py para captura de pantalla")
+      # if username == '' and password == '':
+      #   raise Exception("Lanzando error forzado en test_login.py para captura de pantalla")
       text_error = LoginPage(driver).get_error_message_page()
       assert text_error in error_text
       logger.info("-----test_login.py fallido completado correctamente-----")
